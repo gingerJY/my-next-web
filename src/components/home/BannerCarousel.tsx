@@ -7,6 +7,8 @@ import { Autoplay } from "swiper/modules";
 import gsap from "gsap";
 import "swiper/css";
 
+import {useTranslations} from 'next-intl';
+
 type Banner = {
   id: number;
   title: string;
@@ -15,6 +17,7 @@ type Banner = {
 };
 
 export default function BannerCarousel({ banners }: { banners: Banner[] }) {
+  const t = useTranslations('HomePage');
   const slidesRef = useRef<HTMLDivElement[]>([]);
 
   // useEffect(() => {
@@ -60,6 +63,7 @@ export default function BannerCarousel({ banners }: { banners: Banner[] }) {
               />
               <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white">
                 <h2 className="text-3xl font-bold mb-2">{b.title}</h2>
+                <h3>{t('title')}</h3>
                 <a className="px-4 py-2 bg-white text-black rounded-md" href={b.link}>learn more</a>
               </div>
             </div>
