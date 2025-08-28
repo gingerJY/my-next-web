@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
-import { Locale, hasLocale, NextIntlClientProvider } from 'next-intl';
+import { Locale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { countryLocales } from '@/i18n/countryLocales';
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
@@ -40,15 +41,18 @@ export default async function LocaleLayout({
 }: LayoutProps<'/[locale]'>) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound(); // 返回 404
+
+  const language = countryLocales[locale as keyof typeof countryLocales];
+  console.log('🌹🌹🌹', language)
+  if (!language) {
+    notFound();
   }
 
   // Enable static rendering
-  setRequestLocale(locale);
+  // setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={language}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           {children}

@@ -1,4 +1,5 @@
 import {getTranslations, setRequestLocale} from 'next-intl/server';
+import {Link} from '@/i18n/navigation';
 import {Locale} from 'next-intl';
 import BannerCarousel from "@/components/home/BannerCarousel";
 async function getBanners() {
@@ -27,6 +28,7 @@ export default async function Home({params}: PageProps<'/[locale]'>) {
     <main className="p-10">
       <h1 className="text-3xl font-bold mb-5">{t('title')}</h1>
       <BannerCarousel banners={banners} />
+      <Link href="/aura">aura</Link>
     </main>
   );
 }
