@@ -17,7 +17,7 @@ async function getBanners() {
 }
 
 export default async function Home({params}: PageProps<'/[locale]'>) {
-  const {locale} = params;
+  const {locale} = await params;
   // Enable static rendering
   setRequestLocale(locale as Locale);
 

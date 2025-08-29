@@ -1,5 +1,5 @@
 export const countryLocales = {
-  'base': "en",
+  'en': "en",
   'us': "en",
   'cn': 'zh',
   'jp': 'ja',

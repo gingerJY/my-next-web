@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { countryLocales } from '@/i18n/countryLocales';
 import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,25 +38,20 @@ export default async function LocaleLayout({
   children,
   params
 }: LayoutProps<'/[locale]'>) {
-  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
 
   const language = countryLocales[locale as keyof typeof countryLocales];
-  console.log('🌹🌹🌹', language)
   if (!language) {
     notFound();
   }
 
-  // Enable static rendering
-  // setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return (
-    <html lang={language}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider>
+      <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+      </div>
+    </NextIntlClientProvider>
   );
 }
