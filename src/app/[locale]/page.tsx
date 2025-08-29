@@ -1,6 +1,6 @@
-import {getTranslations, setRequestLocale} from 'next-intl/server';
-import {Link} from '@/i18n/navigation';
-import {Locale} from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
+import { Locale } from 'next-intl';
 import BannerCarousel from "@/components/home/BannerCarousel";
 async function getBanners() {
   const res = await fetch(
@@ -16,8 +16,8 @@ async function getBanners() {
   }));
 }
 
-export default async function Home({params}: PageProps<'/[locale]'>) {
-  const {locale} = await params;
+export default async function Home({ params }: PageProps<'/[locale]'>) {
+  const { locale } = await params;
   // Enable static rendering
   setRequestLocale(locale as Locale);
 
