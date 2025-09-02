@@ -2,21 +2,21 @@ import { notFound } from 'next/navigation';
 import { Locale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { countryLocales } from '@/i18n/countryLocales';
-import { Geist, Geist_Mono } from "next/font/google";
+import { countryLocales } from '@/constants/regions';
+import { Geist, Geist_Mono } from 'next/font/google';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin']
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin']
 });
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.map(locale => ({ locale }));
 }
 
 export async function generateMetadata(
@@ -49,7 +49,9 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider>
-      <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <div
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
       </div>
     </NextIntlClientProvider>

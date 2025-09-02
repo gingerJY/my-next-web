@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Locale } from 'next-intl';
 import BannerCarousel from "@/components/home/BannerCarousel";
+import RegionLangSwitcher from '@/components/common/RegionLangSwitcher';
 async function getBanners() {
   const res = await fetch(
     "http://localhost:1337/api/index-banners?populate=*",
@@ -29,6 +30,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
       <h1 className="text-3xl font-bold mb-5">{t('title')}</h1>
       <BannerCarousel banners={banners} />
       <Link href="/aura">aura</Link>
+      <RegionLangSwitcher />
     </main>
   );
 }
